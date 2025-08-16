@@ -8,10 +8,12 @@ final class HomeLoadingState extends HomeState {}
 class HomeLoadedState extends HomeState {
   final List<PopularLocationsEntity> popularLocations;
   final List<PopularLocationsEntity> rentalCategories;
+  final List<Review> reviews;
 
-  HomeLoadedState({
+  HomeLoadedState( {
     required this.popularLocations,
     required this.rentalCategories,
+    required this.reviews,
   });
 }
 

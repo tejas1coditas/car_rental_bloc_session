@@ -1,6 +1,6 @@
-import 'package:car_rental_app/features/home/car_details/bloc/car_details_bloc.dart';
-import 'package:car_rental_app/features/home/car_details/bloc/car_details_event.dart';
-import 'package:car_rental_app/features/home/car_details/bloc/car_details_state.dart';
+import 'package:car_rental_app/features/car_details/bloc/car_details_bloc.dart';
+import 'package:car_rental_app/features/car_details/bloc/car_details_event.dart';
+import 'package:car_rental_app/features/car_details/bloc/car_details_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,14 +12,20 @@ class CarDetailsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => CarDetailsBloc()..add(FetchCarDetailsEvent()),
       child: Scaffold(
+        appBar: AppBar(actions: [Icon(Icons.favorite_border_outlined)]),
         body: BlocBuilder<CarDetailsBloc, CarDetailsState>(
           builder: (context, state) {
             if (state is LoadedCarDetailsState) {
               final carDetails = state.carDetails;
               return SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(carDetails.carImage),
+                    Image.asset(
+                      carDetails.carImage,
+                      // height: 320,
+                      width: double.infinity,
+                    ),
                     Text('About this car'),
                     Text(carDetails.aboutCar.make),
                     Text(carDetails.aboutCar.model),

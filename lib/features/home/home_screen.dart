@@ -1,5 +1,8 @@
 import 'package:car_rental_app/constants/constants.dart';
+import 'package:car_rental_app/data/models/review_model.dart';
 import 'package:car_rental_app/features/home/home_bloc/home_bloc.dart';
+import 'package:car_rental_app/features/home/widgets/customer_review_section.dart';
+import 'package:car_rental_app/features/home/widgets/last_minute_deals.dart';
 import 'package:car_rental_app/features/home/widgets/rental_category_grid.dart';
 import 'package:car_rental_app/widgets/bottom_bar.dart';
 import 'package:car_rental_app/widgets/search_container.dart';
@@ -35,9 +38,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state is HomeLoadingState) {
-            return Center(child: CircularProgressIndicator());
-          }
           if (state is HomeLoadedState) {
             return SingleChildScrollView(
               child: Padding(
@@ -51,19 +51,36 @@ class HomeScreen extends StatelessWidget {
                       child: titleText('Popular Locations'),
                     ),
 
-                    PopularLocationsList(popularLocations: state.popularLocations),
+                    PopularLocationsList(
+                      popularLocations: state.popularLocations,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 24),
                       child: titleText('Rental Categories'),
                     ),
 
-                    RentalCategoryGrid(rentalCategories: state.rentalCategories)
+                    RentalCategoryGrid(
+                      rentalCategories: state.rentalCategories,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 24),
+                      child: titleText('Last Minute Deals'),
+                    ),
+
+                    LastMinuteDeals(),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 24),
+                      child: titleText('Customer Reviews'),
+                    ),
+
+                    CustomerReviewsSection(reviews: state.reviews),
                   ],
                 ),
               ),
             );
           }
-          return Center(child: Text('Error State'));
+          return Center(child: Text('data'));
         },
       ),
       bottomNavigationBar: BottomBar(),

@@ -18,4 +18,6 @@ Text titleText(String text) {
 
 abstract class AssetConstants {
   static String popularLocationImage = 'assets/popular_location_image.png';
+  static String manAvatar = 'assets/home/man.png';
+  static String womenAvatar = 'assets/home/women.png';
 }

@@ -1,5 +1,5 @@
 import 'package:car_rental_app/data/models/popular_locations_entity.dart';
-import 'package:car_rental_app/features/home/car_details/screen/car_details_screen.dart';
+import 'package:car_rental_app/features/car_details/screen/car_details_screen.dart';
 import 'package:car_rental_app/widgets/popular_location_card.dart';
 import 'package:flutter/material.dart';
 

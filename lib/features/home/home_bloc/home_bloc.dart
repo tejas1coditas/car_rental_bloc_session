@@ -1,3 +1,4 @@
+import 'package:car_rental_app/data/models/review_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:car_rental_app/constants/constants.dart';
 import 'package:car_rental_app/data/models/popular_locations_entity.dart';
@@ -10,13 +11,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeLoadingState()) {
     on<FetchDataEvent>((event, emit) async {
       // loader
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 1));
 
       // loaded
       emit(
         HomeLoadedState(
           popularLocations: popularLocations,
           rentalCategories: rentalCategories,
+          reviews: reviews
         ),
       );
     });
@@ -63,3 +65,27 @@ final List<PopularLocationsEntity> rentalCategories = [
     subtitle: 'Arrive in style',
   ),
 ];
+
+   List<Review> reviews = [
+    Review(
+      name: "Sophia",
+      timeAgo: "1 month ago",
+      profileImage: AssetConstants.manAvatar,
+      rating: 5,
+      comment:
+          "Great experience! The car was clean and the service was excellent.",
+      likes: 12,
+      dislikes: 2,
+    ),
+    Review(
+      name: "Ethan",
+      timeAgo: "2 months ago",
+      profileImage: AssetConstants.womenAvatar,
+      rating: 4,
+      comment: "Good value for money. The car was reliable.",
+      likes: 8,
+      dislikes: 1,
+    ),
+  ];
+
+
